@@ -8,7 +8,199 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>Teoria de Colas.. jejej</h3>
+    <header class="header">
+        <h3>Teoria de Colas.. jejeje 😜</h3>
+    </header>
+    <main class="main">
+        <section class="container datos">
+            <h4>Ingresa los valores</h4>
+            <form action="datos">
+                <label for="datos">
+                    <span>Promedio de llegada λ</span>
+                    <input type="number">
+                    <span>por horas</span>
+                </label>
+                <label for="datos">
+                    <span>Promedio de atención μ</span>
+                    <input type="number">
+                    <span>por horas</span>
+                </label>
+                <label for="datos">
+                    <span>Servidores c</span>
+                    <input type="number">
+                    <span>unidades</span>
+                </label>
+            </form>
+        </section>
+        <section class="container solucion">
+            <h4>SOLUCIÓN</h4>
+            <div class="wall">
+                <div class="tabla">
+                    <div class="filas">
+                        <span class="n">N</span>
+                        <span class="name">DATOS</span>
+                        <span class="sib">SÍMBOLO</span>
+                        <span class="valor">Valor</span>
+                        <span class="item">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">1</span>
+                        <span class="name">Estabilidad</span>
+                        <span class="sib">μ*c</span>
+                        <span class="valor" id="valor1">Valor</span>
+                        <span class="item" id="medida1">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">2</span>
+                        <span class="name">Intensidad de trafico</span>
+                        <span class="sib">p</span>
+                        <span class="valor" id="valor2">Valor</span>
+                        <span class="item" id="medida2">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">3</span>
+                        <span class="name">Número promedio en la fila</span>
+                        <span class="sib">Lq</span>
+                        <span class="valor" id="valor3">Valor</span>
+                        <span class="item" id="medida3">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">4</span>
+                        <span class="name">Tiempo promedio de espera en la fila</span>
+                        <span class="sib">Wq</span>
+                        <span class="valor" id="valor4">Valor</span>
+                        <span class="item" id="medida4">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">5</span>
+                        <span class="name">Tiempo promedio de espera en el SIS</span>
+                        <span class="sib">Ws</span>
+                        <span class="valor" id="valor5">Valor</span>
+                        <span class="item" id="medida5">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">6</span>
+                        <span class="name">Número promedio en el SIS</span>
+                        <span class="sib">Ls</span>
+                        <span class="valor" id="valor6">Valor</span>
+                        <span class="item" id="medida6">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">7</span>
+                        <span class="name">
+                            Probabilidad de que un cliente que llega 
+                            tenga que esperar</span>
+                        <span class="sib">PW</span>
+                        <span class="valor" id="valor7">Valor</span>
+                        <span class="item" id="medida7">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">8</span>
+                        <span class="name">Factor de intensidad 0</span>
+                        <span class="sib">FI0</span>
+                        <span class="valor" id="valor8">Valor</span>
+                        <span class="item" id="medida8">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">9</span>
+                        <span class="name">Factor de intensidad 1</span>
+                        <span class="sib">FI1</span>
+                        <span class="valor" id="valor9">Valor</span>
+                        <span class="item" id="medida9">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">10</span>
+                        <span class="name">Factor de intensidad 2</span>
+                        <span class="sib">FI2</span>
+                        <span class="valor" id="valor10">Valor</span>
+                        <span class="item" id="medida10">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">11</span>
+                        <span class="name">Factor del servidor</span>
+                        <span class="sib">FSN</span>
+                        <span class="valor" id="valor11">Valor</span>
+                        <span class="item" id="medida11">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">12</span>
+                        <span class="name">Probabilidad que no exista clientes en el SIS</span>
+                        <span class="sib">PO</span>
+                        <span class="valor" id="valor12">Valor</span>
+                        <span class="item" id="medida12">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">13</span>
+                        <span class="name">Probabilidad de que haya 1 clientes en el 
+                            sistema</span>
+                        <span class="sib">P1 = FI1 * PO</span>
+                        <span class="valor" id="valor13">Valor</span>
+                        <span class="item" id="medida13">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">14</span>
+                        <span class="name">Probabilidad de que haya 2 clientes en el 
+                            sistema</span>
+                        <span class="sib">P2 = FI2 * PO</span>
+                        <span class="valor" id="valor14">Valor</span>
+                        <span class="item" id="medida14">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">15</span>
+                        <span class="name">Probabilidad de que haya (0 ≤ X ≤ N) clientes 
+                            en el sistema</span>
+                        <span class="sib">P(0 ≤ X ≤ N)</span>
+                        <span class="valor" id="valor15">Valor</span>
+                        <span class="item" id="medida15">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">16</span>
+                        <span class="name">Probabilidad de que haya 3 clientes en el 
+                            sistema</span>
+                        <span class="sib">P3 = FI3 * PO</span>
+                        <span class="valor" id="valor16">Valor</span>
+                        <span class="item" id="medida16">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">17</span>
+                        <span class="name">Probabilidad de que haya 4 clientes en el 
+                            sistema</span>
+                        <span class="sib">P4 = FI4 * PO</span>
+                        <span class="valor" id="valor17">Valor</span>
+                        <span class="item" id="medida17">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">18</span>
+                        <span class="name">Probabilidad de que haya 5 clientes en el 
+                            sistema</span>
+                        <span class="sib">P5 = FI5 * PO</span>
+                        <span class="valor" id="valor18">Valor</span>
+                        <span class="item" id="medida18">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">19</span>
+                        <span class="name">Probabilidad de que haya (0 ≤ X ≤ N) clientes 
+                            en el sistema</span>
+                        <span class="sib">P(0 ≤ X ≤ N)</span>
+                        <span class="valor" id="valor19">Valor</span>
+                        <span class="item" id="medida19">Medida</span>
+                    </div>
+                    <div class="filas">
+                        <span class="n">20</span>
+                        <span class="name">Utilización de las instalaciones</span>
+                        <span class="sib">UI</span>
+                        <span class="valor" id="valor20">--?--</span>
+                        <span class="item" id="medida20">--?--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="pie">
+            <a href="#" class="a">Terminos y condiciones</a>
+        </div>
+    </footer>
     <script src="./main.js"></script>
 </body>
 </html>
