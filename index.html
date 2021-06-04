@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="header">
-        <h3>Teoria de Colas.. jejeje 😜</h3>
+        <h3>Teoria de Colas.. jejeje 😜(M/M/s)</h3>
     </header>
     <main class="main">
         <section class="container datos">
@@ -17,20 +17,24 @@
             <form action="datos">
                 <label for="datos">
                     <span>Promedio de llegada λ</span>
-                    <input type="number">
+                    <input type="number" id="lambda">
                     <span>por horas</span>
                 </label>
                 <label for="datos">
                     <span>Promedio de atención μ</span>
-                    <input type="number">
+                    <input type="number" id="neo">
                     <span>por horas</span>
                 </label>
                 <label for="datos">
                     <span>Servidores c</span>
-                    <input type="number">
+                    <input type="number"id="numServidores">
                     <span>unidades</span>
                 </label>
             </form>
+            <div class="btn">
+                <button id="calcular" class="btn-center">Calcular</button>
+                <button class="btn-center" onclick="location.reload()">Borrar Datos</button>
+            </div>
         </section>
         <section class="container solucion">
             <h4>SOLUCIÓN</h4>
@@ -62,28 +66,28 @@
                         <span class="name">Número promedio en la fila</span>
                         <span class="sib">Lq</span>
                         <span class="valor" id="valor3">Valor</span>
-                        <span class="item" id="medida3">Medida</span>
+                        <span class="item" id="medida3">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">4</span>
                         <span class="name">Tiempo promedio de espera en la fila</span>
                         <span class="sib">Wq</span>
                         <span class="valor" id="valor4">Valor</span>
-                        <span class="item" id="medida4">Medida</span>
+                        <span class="item" id="medida4">horas</span>
                     </div>
                     <div class="filas">
                         <span class="n">5</span>
                         <span class="name">Tiempo promedio de espera en el SIS</span>
                         <span class="sib">Ws</span>
                         <span class="valor" id="valor5">Valor</span>
-                        <span class="item" id="medida5">Medida</span>
+                        <span class="item" id="medida5">horas</span>
                     </div>
                     <div class="filas">
                         <span class="n">6</span>
                         <span class="name">Número promedio en el SIS</span>
                         <span class="sib">Ls</span>
                         <span class="valor" id="valor6">Valor</span>
-                        <span class="item" id="medida6">Medida</span>
+                        <span class="item" id="medida6">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">7</span>
@@ -92,42 +96,42 @@
                             tenga que esperar</span>
                         <span class="sib">PW</span>
                         <span class="valor" id="valor7">Valor</span>
-                        <span class="item" id="medida7">Medida</span>
+                        <span class="item" id="medida7">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">8</span>
                         <span class="name">Factor de intensidad 0</span>
                         <span class="sib">FI0</span>
                         <span class="valor" id="valor8">Valor</span>
-                        <span class="item" id="medida8">Medida</span>
+                        <span class="item" id="medida8">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">9</span>
                         <span class="name">Factor de intensidad 1</span>
                         <span class="sib">FI1</span>
                         <span class="valor" id="valor9">Valor</span>
-                        <span class="item" id="medida9">Medida</span>
+                        <span class="item" id="medida9">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">10</span>
                         <span class="name">Factor de intensidad 2</span>
                         <span class="sib">FI2</span>
                         <span class="valor" id="valor10">Valor</span>
-                        <span class="item" id="medida10">Medida</span>
+                        <span class="item" id="medida10">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">11</span>
                         <span class="name">Factor del servidor</span>
                         <span class="sib">FSN</span>
                         <span class="valor" id="valor11">Valor</span>
-                        <span class="item" id="medida11">Medida</span>
+                        <span class="item" id="medida11">unidades</span>
                     </div>
                     <div class="filas">
                         <span class="n">12</span>
                         <span class="name">Probabilidad que no exista clientes en el SIS</span>
                         <span class="sib">PO</span>
                         <span class="valor" id="valor12">Valor</span>
-                        <span class="item" id="medida12">Medida</span>
+                        <span class="item" id="medida12">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">13</span>
@@ -135,7 +139,7 @@
                             sistema</span>
                         <span class="sib">P1 = FI1 * PO</span>
                         <span class="valor" id="valor13">Valor</span>
-                        <span class="item" id="medida13">Medida</span>
+                        <span class="item" id="medida13">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">14</span>
@@ -143,15 +147,15 @@
                             sistema</span>
                         <span class="sib">P2 = FI2 * PO</span>
                         <span class="valor" id="valor14">Valor</span>
-                        <span class="item" id="medida14">Medida</span>
+                        <span class="item" id="medida14">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">15</span>
                         <span class="name">Probabilidad de que haya (0 ≤ X ≤ N) clientes 
                             en el sistema</span>
-                        <span class="sib">P(0 ≤ X ≤ N)</span>
+                        <span class="sib">P(0 ≤ n ≤ 2)</span>
                         <span class="valor" id="valor15">Valor</span>
-                        <span class="item" id="medida15">Medida</span>
+                        <span class="item" id="medida15">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">16</span>
@@ -159,7 +163,7 @@
                             sistema</span>
                         <span class="sib">P3 = FI3 * PO</span>
                         <span class="valor" id="valor16">Valor</span>
-                        <span class="item" id="medida16">Medida</span>
+                        <span class="item" id="medida16">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">17</span>
@@ -167,7 +171,7 @@
                             sistema</span>
                         <span class="sib">P4 = FI4 * PO</span>
                         <span class="valor" id="valor17">Valor</span>
-                        <span class="item" id="medida17">Medida</span>
+                        <span class="item" id="medida17">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">18</span>
@@ -175,15 +179,15 @@
                             sistema</span>
                         <span class="sib">P5 = FI5 * PO</span>
                         <span class="valor" id="valor18">Valor</span>
-                        <span class="item" id="medida18">Medida</span>
+                        <span class="item" id="medida18">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">19</span>
                         <span class="name">Probabilidad de que haya (0 ≤ X ≤ N) clientes 
                             en el sistema</span>
-                        <span class="sib">P(0 ≤ X ≤ N)</span>
+                        <span class="sib">P(3 ≤ n ≤ 5)</span>
                         <span class="valor" id="valor19">Valor</span>
-                        <span class="item" id="medida19">Medida</span>
+                        <span class="item" id="medida19">porcentaje</span>
                     </div>
                     <div class="filas">
                         <span class="n">20</span>
@@ -201,6 +205,7 @@
             <a href="#" class="a">Terminos y condiciones</a>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./main.js"></script>
 </body>
 </html>
