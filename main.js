@@ -1,7 +1,7 @@
 // declaracion de varialbles.
-let lambda = document.getElementById('lambda')
-let neo = document.getElementById('neo')
-let numServidores =document.getElementById('numServidores')
+let lambda1 = document.getElementById('lambda')
+let neo1 = document.getElementById('neo')
+let numServidores1 =document.getElementById('numServidores')
 // declaration and const.
 const calcular = document.getElementById('calcular')
 const DEC = 4;
@@ -115,10 +115,10 @@ function probabilidadEntre2(po, intesidad, j, n, callback, numServ){
 }
 // evento de calcular.
 calcular.addEventListener('click', () => {
-    if(lambda.value !== '' && neo.value !== '' && numServidores.value !== ''){
-        lambda = parseInt(lambda.value)
-        neo = parseInt(neo.value)
-        numServidores = parseInt(numServidores.value)
+    if(lambda1.value !== '' && neo1.value !== '' && numServidores1.value !== ''){
+        let lambda = parseInt(lambda1.value)
+        let neo = parseInt(neo1.value)
+        let numServidores = parseInt(numServidores1.value)
         swal(`Teoria de colas 😊`, `Listo, la tabla se esta generando...`, 'success')
         // calulo de la estabilidad
         let estabilidad = neo * numServidores
