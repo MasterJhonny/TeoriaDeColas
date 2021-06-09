@@ -8,6 +8,10 @@ html {
     font-family:arial;
     font-size: 70%;
 }
+
+body {
+    background-image: url(./img/bg-circuit.svg);
+}
 h3 {
     color: rgba(152, 40, 243, 0.5);
 }
