@@ -113,6 +113,16 @@ function probabilidadEntre2(po, intesidad, j, n, callback, numServ){
     }
     return sumaPro
 }
+
+// function complementaria para calcular la utilizacion de instalaciones
+function utilizacionDeInstalacion(po, numServ, cadena){
+    let cuerpo = po
+    for(let i = 0; i < cadena.length; i++){
+        let base = ((numServ - (i+1))/numServ) * cadena[i]
+        cuerpo += base
+    }
+    return 1 - cuerpo
+}
 // evento de calcular.
 calcular.addEventListener('click', () => {
     if(lambda1.value !== '' && neo1.value !== '' && numServidores1.value !== ''){
@@ -156,10 +166,10 @@ calcular.addEventListener('click', () => {
         let FSn = factorServidor(p, numServidores)
         valor11.innerText = `${FSn.toFixed(DEC)}`
         // Probabilidad de que haya 1,2
-        let P1 = probabilidadDeNClient1(PO, p, 1, factorInten) * 100
-        let P2 = probabilidadDeNClient1(PO, p, 2, factorInten) * 100
-        valor13.innerText = `${P1.toFixed(DEC)} %`
-        valor14.innerText = `${P2.toFixed(DEC)} %` 
+        let P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
+        let P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
+        valor13.innerText = `${(P1*100).toFixed(DEC)} %`
+        valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
         // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
         let probabilidad_0_2 = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1) * 100
         valor15.innerText = `${probabilidad_0_2.toFixed(DEC)} %`
@@ -173,6 +183,17 @@ calcular.addEventListener('click', () => {
         // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
         let probabilidad_3_5 = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores) * 100
         valor19.innerText = `${probabilidad_3_5.toFixed(DEC)} %`
+        // Probabilidad de utilizacion del sistema.
+        let cadenaDePro = new Array() 
+        if(numServidores === 2){
+            cadenaDePro.push(P1)
+        }
+        if(numServidores === 3){
+            cadenaDePro.push(P1)
+            cadenaDePro.push(P2)
+        }
+        let UI = utilizacionDeInstalacion(PO, numServidores, cadenaDePro) * 100
+        valor20.innerText = `${UI.toFixed(DEC)} %`
     } else {
         swal('Teoria de colas', 'Lo lamentamos debes de ingresar todos los valores! ☹️', 'error')
     }
