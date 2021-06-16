@@ -16,6 +16,10 @@ h3 {
     color: rgba(152, 40, 243, 0.5);
 }
 
+.none{
+    display: none;
+}
+
 .header h3 {
     text-align: center;
     padding: 1rem;
@@ -92,10 +96,9 @@ h3 {
     
 } 
 
-.main .solucion .tabla .filas {
+.filas {
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row; 
 }
 
 .main .solucion .tabla .filas span {

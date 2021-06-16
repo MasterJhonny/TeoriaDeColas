@@ -26,7 +26,9 @@ let valor17 = document.getElementById('valor17')
 let valor18 = document.getElementById('valor18')
 let valor19 = document.getElementById('valor19')
 let valor20 = document.getElementById('valor20')
-
+// valores especiales.
+let valorVan = document.getElementById('valorVan')
+let especial = document.getElementById('especial')
 // calcular factorial
 function factorial(numero) {
     let valor = 1;
@@ -105,7 +107,7 @@ function probabilidadEntre1(po, intesidad, j, n, callback){
 function probabilidadDeNClient2(po, intesidad, n, numServ){
     return (intesidad**n * po)/(factorial(numServ) * (numServ**(n - numServ)))
 }
-// Probabilidad de que haya (0 ≤ x ≤ 2) clientes en el sistema 
+// Probabilidad de que haya (3 ≤ x ≤ n) clientes en el sistema 
 function probabilidadEntre2(po, intesidad, j, n, callback, numServ){
     let sumaPro = 0;
     for(let i = j; i <= n; i++){
@@ -166,23 +168,55 @@ calcular.addEventListener('click', () => {
         let FSn = factorServidor(p, numServidores)
         valor11.innerText = `${FSn.toFixed(DEC)}`
         // Probabilidad de que haya 1,2
-        let P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
-        let P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
-        valor13.innerText = `${(P1*100).toFixed(DEC)} %`
-        valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
-        // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
-        let probabilidad_0_2 = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1) * 100
-        valor15.innerText = `${probabilidad_0_2.toFixed(DEC)} %`
-        // Probabilidad de que haya 3,4,5
-        let P3 = probabilidadDeNClient2(PO, p, 3, numServidores) * 100
-        let P4 = probabilidadDeNClient2(PO, p, 4, numServidores) * 100
-        let P5 = probabilidadDeNClient2(PO, p, 5, numServidores) * 100
-        valor16.innerText = `${P3.toFixed(DEC)} %`
-        valor17.innerText = `${P4.toFixed(DEC)} %`
-        valor18.innerText = `${P5.toFixed(DEC)} %`
-        // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
-        let probabilidad_3_5 = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores) * 100
-        valor19.innerText = `${probabilidad_3_5.toFixed(DEC)} %`
+        let P1, P2, P3, P4, P5, P6, probabilidad_0_c, probabilidad_c_n
+        switch (numServidores) {
+            case 2: 
+                especial.classList.add('none')
+                especial.classList.remove('filas')
+                P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
+                P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
+                valor13.innerText = `${(P1).toFixed(DEC)} %`
+                valor14.innerText = `${(P2).toFixed(DEC)} %` 
+                // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
+                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1) * 100
+                valor15.innerText = `${probabilidad_0_c.toFixed(DEC)} %`
+                // Probabilidad de que haya 3,4,5
+                P3 = probabilidadDeNClient2(PO, p, 3, numServidores)
+                P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
+                P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
+                valor16.innerText = `${P3.toFixed(DEC)} %`
+                valor17.innerText = `${P4.toFixed(DEC)} %`
+                valor18.innerText = `${P5.toFixed(DEC)} %`
+                // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
+                probabilidad_c_n = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores) * 100
+                valor19.innerText = `${probabilidad_c_n.toFixed(DEC)} %`
+            break;
+            case 3:
+                especial.classList.remove('none')
+                especial.classList.add('filas')
+                P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
+                P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
+                P3 = probabilidadDeNClient1(PO, p, 3, factorInten)
+                valor13.innerText = `${(P1).toFixed(DEC)} %`
+                valor14.innerText = `${(P2).toFixed(DEC)} %` 
+                valor16.innerText = `${P3.toFixed(DEC)} %`
+                // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
+                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 3, probabilidadDeNClient1) * 100
+                valor15.innerText = `${probabilidad_0_c.toFixed(DEC)} %`
+                // Probabilidad de que haya 3,4,5
+                P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
+                P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
+                P6 = probabilidadDeNClient2(PO, p, 6, numServidores)
+                valor17.innerText = `${P4.toFixed(DEC)} %`
+                valor18.innerText = `${P5.toFixed(DEC)} %`
+                valorVan.innerText = `${P6.toFixed(DEC)} %`
+                // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
+                probabilidad_c_n = probabilidadEntre2(PO, p, 4, 6, probabilidadDeNClient2, numServidores) * 100
+                valor19.innerText = `${probabilidad_c_n.toFixed(DEC)} %`
+            break;
+            default:
+            break;
+        }
         // Probabilidad de utilizacion del sistema.
         let cadenaDePro = new Array() 
         if(numServidores === 2){
