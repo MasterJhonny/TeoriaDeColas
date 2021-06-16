@@ -29,6 +29,29 @@ let valor20 = document.getElementById('valor20')
 // valores especiales.
 let valorVan = document.getElementById('valorVan')
 let especial = document.getElementById('especial')
+let valorVan1 = document.getElementById('valorVan1')
+let especial1 = document.getElementById('especial1')
+// valores del indice
+let ids = [
+document.getElementById('num11'),
+document.getElementById('num12'),
+document.getElementById('num13'),
+document.getElementById('num14'),
+document.getElementById('num15'),
+document.getElementById('num16'),
+document.getElementById('num17'),
+document.getElementById('num18'),
+document.getElementById('num19'),
+document.getElementById('num20'),
+document.getElementById('num21')]
+
+// valores del nombre and simbolo.
+let name1 = document.getElementById('name1')
+let name2 = document.getElementById('name2')
+let sib1 = document.getElementById('sib1')
+let sib2 = document.getElementById('sib2')
+let nameA = document.getElementById('nameA')
+let sibA = document.getElementById('sibA')
 // calcular factorial
 function factorial(numero) {
     let valor = 1;
@@ -140,9 +163,8 @@ calcular.addEventListener('click', () => {
         valor2.innerText = `${p.toFixed(DEC)}`
         // guradando el valor po
         let PO = proNoSis(p, numServidores, sumaDeTerminos)
-        valor12.innerText = `${PO.toFixed(DEC)}`
+        valor12.innerText = `${(PO*100).toFixed(DEC)} %`
         // guardando el promedio de personas de la fila en Lq.
-        // debugger
         let Lq = numProFilas(p, numServidores, PO)
         valor3.innerText = `${Lq.toFixed(DEC)}`
         // registrando en menoria jeje..el tiempo promedio Wq.
@@ -173,46 +195,80 @@ calcular.addEventListener('click', () => {
             case 2: 
                 especial.classList.add('none')
                 especial.classList.remove('filas')
+                especial1.classList.add('none')
+                especial1.classList.remove('filas')
+                name2.innerText = 'Probabilidad de que haya 3 clientes en el sistema'
+                name1.innerText = 'Probabilidad de que haya (0 ≤ X ≤ 2) clientes en el sistema'
+                nameA.innerText = 'Probabilidad de que haya (3 ≤ X ≤ 5) clientes en el sistema'
+                sibA.innerText = 'P(3 ≤ n ≤ 5)'
+                sib2.innerText = 'P3 = FI3 * PO'
+                sib1.innerText = 'P(0 ≤ n ≤ 2)'
+                // calculo de probablidades
                 P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
                 P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
-                valor13.innerText = `${(P1).toFixed(DEC)} %`
-                valor14.innerText = `${(P2).toFixed(DEC)} %` 
+                valor13.innerText = `${(P1*100).toFixed(DEC)} %`
+                valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
                 // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
-                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1) * 100
-                valor15.innerText = `${probabilidad_0_c.toFixed(DEC)} %`
+                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1)
+                valor15.innerText = `${(probabilidad_0_c*100).toFixed(DEC)} %`
                 // Probabilidad de que haya 3,4,5
                 P3 = probabilidadDeNClient2(PO, p, 3, numServidores)
                 P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
                 P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
-                valor16.innerText = `${P3.toFixed(DEC)} %`
-                valor17.innerText = `${P4.toFixed(DEC)} %`
-                valor18.innerText = `${P5.toFixed(DEC)} %`
+                valor16.innerText = `${(P3*100).toFixed(DEC)} %`
+                valor17.innerText = `${(P4*100).toFixed(DEC)} %`
+                valor18.innerText = `${(P5*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
-                probabilidad_c_n = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores) * 100
-                valor19.innerText = `${probabilidad_c_n.toFixed(DEC)} %`
+                probabilidad_c_n = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores)
+                valor19.innerText = `${(probabilidad_c_n*100).toFixed(DEC)} %`
+                let num = 11
+                for(ide in ids){
+                    if(ide != 8){
+                        ids[ide].innerText = num
+                        num++
+                    }
+                }
             break;
             case 3:
                 especial.classList.remove('none')
                 especial.classList.add('filas')
+                especial1.classList.remove('none')
+                especial1.classList.add('filas')
+                name1.innerText = 'Probabilidad de que haya 3 clientes en el sistema'
+                name2.innerText = 'Probabilidad de que haya (0 ≤ X ≤ 3) clientes en el sistema'
+                sib1.innerText = 'P3 = FI3 * PO'
+                sib2.innerText = 'P(0 ≤ n ≤ 3)'
+                nameA.innerText = 'Probabilidad de que haya (4 ≤ X ≤ 6) clientes en el sistema'
+                sibA.innerText = 'P(4 ≤ n ≤ 6)'
+                // factor de intencidad 3
+                let F3 = factorInten(p, 3)
+                valorVan1.innerText = `${F3.toFixed(DEC)}`
+                // calculo de probablilidades
                 P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
                 P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
                 P3 = probabilidadDeNClient1(PO, p, 3, factorInten)
-                valor13.innerText = `${(P1).toFixed(DEC)} %`
-                valor14.innerText = `${(P2).toFixed(DEC)} %` 
-                valor16.innerText = `${P3.toFixed(DEC)} %`
+                valor13.innerText = `${(P1*100).toFixed(DEC)} %`
+                valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
+                valor15.innerText = `${(P3*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
-                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 3, probabilidadDeNClient1) * 100
-                valor15.innerText = `${probabilidad_0_c.toFixed(DEC)} %`
+                probabilidad_0_c = probabilidadEntre1(PO, p, 0, 3, probabilidadDeNClient1)
+                valor16.innerText = `${(probabilidad_0_c*100).toFixed(DEC)} %`
                 // Probabilidad de que haya 3,4,5
                 P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
                 P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
                 P6 = probabilidadDeNClient2(PO, p, 6, numServidores)
-                valor17.innerText = `${P4.toFixed(DEC)} %`
-                valor18.innerText = `${P5.toFixed(DEC)} %`
-                valorVan.innerText = `${P6.toFixed(DEC)} %`
+                valor17.innerText = `${(P4*100).toFixed(DEC)} %`
+                valor18.innerText = `${(P5*100).toFixed(DEC)} %`
+                valorVan.innerText = `${(P6*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
-                probabilidad_c_n = probabilidadEntre2(PO, p, 4, 6, probabilidadDeNClient2, numServidores) * 100
-                valor19.innerText = `${probabilidad_c_n.toFixed(DEC)} %`
+                probabilidad_c_n = probabilidadEntre2(PO, p, 4, 6, probabilidadDeNClient2, numServidores)
+                valor19.innerText = `${(probabilidad_c_n*100).toFixed(DEC)} %`
+                // poner id de la tabla.
+                let id = 12
+                for(demo of ids){
+                    demo.innerText = id
+                    id++
+                }
             break;
             default:
             break;
