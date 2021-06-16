@@ -4,8 +4,9 @@ let neo1 = document.getElementById('neo')
 let numServidores1 =document.getElementById('numServidores')
 // declaration and const.
 const calcular = document.getElementById('calcular')
-const DEC = 4;
-// var. salidas en el doc
+const DEC = 2;
+const C = 6;
+// var. salidas para la fila valor
 let valor1 = document.getElementById('valor1')
 let valor2 = document.getElementById('valor2')
 let valor3 = document.getElementById('valor3')
@@ -26,11 +27,35 @@ let valor17 = document.getElementById('valor17')
 let valor18 = document.getElementById('valor18')
 let valor19 = document.getElementById('valor19')
 let valor20 = document.getElementById('valor20')
+// var. salidas para la fila decimales
+let value1 = document.getElementById('value1')
+let value2 = document.getElementById('value2')
+let value3 = document.getElementById('value3')
+let value4 = document.getElementById('value4')
+let value5 = document.getElementById('value5')
+let value6 = document.getElementById('value6')
+let value7 = document.getElementById('value7')
+let value8 = document.getElementById('value8')
+let value9 = document.getElementById('value9')
+let value10 = document.getElementById('value10')
+let value11 = document.getElementById('value11')
+let value12 = document.getElementById('value12')
+let value13 = document.getElementById('value13')
+let value14 = document.getElementById('value14')
+let value15 = document.getElementById('value15')
+let value16 = document.getElementById('value16')
+let value17 = document.getElementById('value17')
+let value18 = document.getElementById('value18')
+let value19 = document.getElementById('value19')
+let value20 = document.getElementById('value20')
 // valores especiales.
 let valorVan = document.getElementById('valorVan')
 let especial = document.getElementById('especial')
 let valorVan1 = document.getElementById('valorVan1')
 let especial1 = document.getElementById('especial1')
+// valores especiales de la fila decimasles
+let valueVan = document.getElementById('valueVan')
+let valueVan1 = document.getElementById('valueVan1')
 // valores del indice
 let ids = [
 document.getElementById('num11'),
@@ -158,37 +183,49 @@ calcular.addEventListener('click', () => {
         // calulo de la estabilidad
         let estabilidad = neo * numServidores
         valor1.innerText = estabilidad
+        value1.innerText = estabilidad
         // calculo de la p intesisdad.
         let p = intencidadDeTrafico(lambda, neo)
-        valor2.innerText = `${p.toFixed(DEC)}`
+        value2.innerText = p
+        valor2.innerText = `${p.toFixed(C)}`
         // guradando el valor po
         let PO = proNoSis(p, numServidores, sumaDeTerminos)
+        value12.innerText = PO
         valor12.innerText = `${(PO*100).toFixed(DEC)} %`
         // guardando el promedio de personas de la fila en Lq.
         let Lq = numProFilas(p, numServidores, PO)
-        valor3.innerText = `${Lq.toFixed(DEC)}`
+        value3.innerText = Lq
+        valor3.innerText = `${Lq.toFixed(0)}`
         // registrando en menoria jeje..el tiempo promedio Wq.
         let Wq = timeProFilas(Lq, lambda)
+        value4.innerText = Wq
         valor4.innerText = `${Wq.toFixed(DEC)}`
         // guardando tiempo promedio de espera en el sistema en let Ws.
         let Ws = timeProSystem(Wq, neo)
+        value5.innerText = Ws
         valor5.innerText = `${Ws.toFixed(DEC)}`
         // guardando Número promedio en el SIS en let Ls.
         let Ls = numProSystem(Ws, lambda)
-        valor6.innerText = `${Ls.toFixed(DEC)}`
+        value6.innerText = Ls
+        valor6.innerText = `${Ls.toFixed(0)}`
         // let Pw = Probabilidad de que un cliente que llega tenga que esperar.
-        let Pw = probaDeEspera(p, numServidores, PO) * 100
-        valor7.innerText = `${Pw.toFixed(DEC)} %`
+        let Pw = probaDeEspera(p, numServidores, PO)
+        value7.innerText = Pw
+        valor7.innerText = `${(Pw*100).toFixed(DEC)} %`
         // Factor de intensidad 0, 1, 2
         let FO = factorInten(p, 0)
-        valor8.innerText = `${FO.toFixed(DEC)}`
+        value8.innerText = FO
+        valor8.innerText = `${FO.toFixed(C)}`
         let F1 = factorInten(p, 1)
-        valor9.innerText = `${F1.toFixed(DEC)}`
+        value9.innerText = F1
+        valor9.innerText = `${F1.toFixed(C)}`
         let F2 = factorInten(p, 2)
-        valor10.innerText = `${F2.toFixed(DEC)}`
+        value10.innerText = F2
+        valor10.innerText = `${F2.toFixed(C)}`
         // Factor del servidor 
         let FSn = factorServidor(p, numServidores)
-        valor11.innerText = `${FSn.toFixed(DEC)}`
+        value11.innerText = FSn
+        valor11.innerText = `${FSn.toFixed(C)}`
         // Probabilidad de que haya 1,2
         let P1, P2, P3, P4, P5, P6, probabilidad_0_c, probabilidad_c_n
         switch (numServidores) {
@@ -206,20 +243,27 @@ calcular.addEventListener('click', () => {
                 // calculo de probablidades
                 P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
                 P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
+                value13.innerText = P1
+                value14.innerText = P2
                 valor13.innerText = `${(P1*100).toFixed(DEC)} %`
                 valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
                 // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
                 probabilidad_0_c = probabilidadEntre1(PO, p, 0, 2, probabilidadDeNClient1)
+                value15.innerText = probabilidad_0_c
                 valor15.innerText = `${(probabilidad_0_c*100).toFixed(DEC)} %`
                 // Probabilidad de que haya 3,4,5
                 P3 = probabilidadDeNClient2(PO, p, 3, numServidores)
                 P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
                 P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
+                value16.innerText = P3
+                value17.innerText = P4
+                value18.innerText = P5
                 valor16.innerText = `${(P3*100).toFixed(DEC)} %`
                 valor17.innerText = `${(P4*100).toFixed(DEC)} %`
                 valor18.innerText = `${(P5*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
                 probabilidad_c_n = probabilidadEntre2(PO, p, 3, 5, probabilidadDeNClient2, numServidores)
+                value19.innerText = probabilidad_c_n
                 valor19.innerText = `${(probabilidad_c_n*100).toFixed(DEC)} %`
                 let num = 11
                 for(ide in ids){
@@ -242,26 +286,35 @@ calcular.addEventListener('click', () => {
                 sibA.innerText = 'P(4 ≤ n ≤ 6)'
                 // factor de intencidad 3
                 let F3 = factorInten(p, 3)
-                valorVan1.innerText = `${F3.toFixed(DEC)}`
+                valueVan1.innerText = F3
+                valorVan1.innerText = `${F3.toFixed(C)}`
                 // calculo de probablilidades
                 P1 = probabilidadDeNClient1(PO, p, 1, factorInten)
                 P2 = probabilidadDeNClient1(PO, p, 2, factorInten)
                 P3 = probabilidadDeNClient1(PO, p, 3, factorInten)
+                value13.innerText = P1
+                value14.innerText = P2
+                value15.innerText = P3
                 valor13.innerText = `${(P1*100).toFixed(DEC)} %`
                 valor14.innerText = `${(P2*100).toFixed(DEC)} %` 
                 valor15.innerText = `${(P3*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (0 ≤ n ≤ 2) clientes en el sistema.
                 probabilidad_0_c = probabilidadEntre1(PO, p, 0, 3, probabilidadDeNClient1)
+                value16.innerText = probabilidad_0_c
                 valor16.innerText = `${(probabilidad_0_c*100).toFixed(DEC)} %`
                 // Probabilidad de que haya 3,4,5
                 P4 = probabilidadDeNClient2(PO, p, 4, numServidores)
                 P5 = probabilidadDeNClient2(PO, p, 5, numServidores)
                 P6 = probabilidadDeNClient2(PO, p, 6, numServidores)
+                value17.innerText = P4
+                value18.innerText = P5
+                valueVan.innerText = P6
                 valor17.innerText = `${(P4*100).toFixed(DEC)} %`
                 valor18.innerText = `${(P5*100).toFixed(DEC)} %`
                 valorVan.innerText = `${(P6*100).toFixed(DEC)} %`
                 // Probabilidad de que haya (3 ≤ n ≤ 5) clientes en el sistema.
                 probabilidad_c_n = probabilidadEntre2(PO, p, 4, 6, probabilidadDeNClient2, numServidores)
+                value19.innerText = probabilidad_c_n
                 valor19.innerText = `${(probabilidad_c_n*100).toFixed(DEC)} %`
                 // poner id de la tabla.
                 let id = 12
@@ -282,8 +335,9 @@ calcular.addEventListener('click', () => {
             cadenaDePro.push(P1)
             cadenaDePro.push(P2)
         }
-        let UI = utilizacionDeInstalacion(PO, numServidores, cadenaDePro) * 100
-        valor20.innerText = `${UI.toFixed(DEC)} %`
+        let UI = utilizacionDeInstalacion(PO, numServidores, cadenaDePro)
+        value20.innerText = UI
+        valor20.innerText = `${(UI*100).toFixed(DEC)} %`
     } else {
         swal('Teoria de colas', 'Lo lamentamos debes de ingresar todos los valores! ☹️', 'error')
     }
