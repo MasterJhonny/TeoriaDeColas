@@ -6,6 +6,9 @@ let numServidores1 =document.getElementById('numServidores')
 const calcular = document.getElementById('calcular')
 const DEC = 2;
 const C = 6;
+// valores de los colores.
+let tabla = document.getElementById('tabla')
+let borde = document.getElementsByClassName('item')
 // var. salidas para la fila valor
 let valor1 = document.getElementById('valor1')
 let valor2 = document.getElementById('valor2')
@@ -77,6 +80,16 @@ let sib1 = document.getElementById('sib1')
 let sib2 = document.getElementById('sib2')
 let nameA = document.getElementById('nameA')
 let sibA = document.getElementById('sibA')
+// funciones de los setting.
+function color(co){
+    tabla.style.color = co
+    for(item of borde){
+        item.style.borderColor = co
+    }
+}
+function fondo(fo){
+    tabla.style.backgroundColor = fo
+}
 // calcular factorial
 function factorial(numero) {
     let valor = 1;

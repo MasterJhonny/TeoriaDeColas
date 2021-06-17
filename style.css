@@ -70,6 +70,7 @@ h3 {
     font-size: 1.2rem;
     font-weight: 600;
     background-color: #f8eded;
+    cursor: pointer;
 }
 .btn-center:hover {
     box-shadow: 0 0 .1rem .1rem rgba(152, 40, 243, 0.3);
@@ -84,16 +85,14 @@ h3 {
     overflow-x: auto;
     box-shadow: 0 0 .1rem .2rem rgba(152, 40, 243, 0.3);
 }
-.main .solucion .wall .tabla {
+.tabla {
     width: 95%;
     min-width: 832px;
     margin: 0 auto;
     margin-bottom: 1rem;
     background-color: #f8eded;
     line-height: 2.5rem;
-    /* flex-direction: column; */
-    /* overflow-x: scroll; */
-    
+    color: #000;  
 } 
 
 .filas {
@@ -101,7 +100,7 @@ h3 {
     flex-direction: row; 
 }
 
-.main .solucion .tabla .filas span {
+.item {
     border: 1px solid #000;
 }
 
@@ -129,10 +128,23 @@ h3 {
     padding: 0 .5rem;
     flex: 1 10%;
 }
-
-.main .solucion .tabla .filas .item {
-    padding: 0 .5rem;
+.main .solucion .tabla .filas .med {
     flex: 1 10%;
+    padding: 0 .5rem;
+}
+
+.main .setting {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 5rem 0;
+}
+.main .setting .cuadro {
+    display: flex;
+    flex-direction:column;
+}
+.main .setting .cuadro label {
+    margin: 2rem;
 }
 footer {
     width: 100%;
@@ -151,7 +163,6 @@ footer .pie {
 
 footer .pie a {
     color: rgba(152, 40, 243, 0.5);
-    /* font-size: 13px; */
 }
 
 @media (min-width: 750px) { 
@@ -160,5 +171,8 @@ footer .pie a {
     }
     html {
         font-size: 90%;
+    }
+    .main .setting .cuadro {
+        flex-direction:row;
     }
 }
